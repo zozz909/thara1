@@ -21,7 +21,7 @@ function App() {
   useMobileOptimization()
 
   return (
-    <Router>
+    <Router basename="/thara1">
       <div className="App">
         <LoadingScreen />
         <Navigation />

@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://zozz909.github.io/thara3",
+  "homepage": "https://zozz909.github.io/thara4",
   "dependencies": {
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",

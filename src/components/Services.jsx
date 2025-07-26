@@ -38,10 +38,10 @@ const Services = () => {
       icon: '',
       features: ['فعاليات داخلية', 'فعاليات خارجية', 'مناسبات خاصة'],
       images: [
-        '/assets/coffee-service1.png',
-        '/assets/coffee-service2.jpg',
-        '/assets/coofesa1.jpg',
-        '/assets/coofesa3.jpg'
+        'assets/coffee-service1.png',
+        'assets/coffee-service2.jpg',
+        'assets/coofesa1.jpg',
+        'assets/coofesa3.jpg'
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة القهوة السعودية'
     },
@@ -52,10 +52,10 @@ const Services = () => {
       icon: 'bi-dish',
       features: ['معارض داخلية', 'معارض خارجية', 'خدمات VIP'],
       images: [
-        '/assets/eatsa1.jpg',
-        '/assets/eatsa2.jpg',
-        '/assets/eatsa3.jpg',
-        '/assets/eatsa4.jpg'
+        'assets/eatsa1.jpg',
+        'assets/eatsa2.jpg',
+        'assets/eatsa3.jpg',
+        'assets/eatsa4.jpg'
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة الأكل السعودي والثقافة'
     },
@@ -66,10 +66,10 @@ const Services = () => {
       icon: 'bi-cup-straw',
       features: ['نكهات أصيلة', 'موكتيلات مبتكرة', 'تجربة فريدة'],
       images: [
-        '/assets/dringsa1.jpg',
-        '/assets/dringsa2.jpg',
-        '/assets/coofebric2.jpg',
-        '/assets/thara12.jpg'
+        'assets/dringsa1.jpg',
+        'assets/dringsa2.jpg',
+        'assets/coofebric2.jpg',
+        'assets/thara12.jpg'
       ],
       whatsappText: 'أريد الاستفسار عن خدمة المشروبات والموكتيلات بالنكهات السعودية'
     },

@@ -60,7 +60,7 @@ const Navigation = () => {
     <nav className={`navbar navbar-expand-lg navbar-dark fixed-top ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <a className="navbar-brand fw-bold" href="#home" onClick={(e) => handleNavClick(e, '#home')}>
-          <img src="/assets/logo.png" alt="Thara Hospitality" height="40" className="me-2" />
+          <img src="assets/logo.png" alt="Thara Hospitality" height="40" className="me-2" />
           ثرى للضيافة
         </a>
         <button 

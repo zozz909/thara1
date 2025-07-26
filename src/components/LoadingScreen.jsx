@@ -18,7 +18,7 @@ const LoadingScreen = () => {
     <div className="loader" id="loader">
       <div className="loader-content">
         <div className="loader-logo">
-          <img src="/assets/logo.png" alt="Thara Hospitality" height="80" />
+          <img src="assets/logo.png" alt="Thara Hospitality" height="80" />
           <div className="logo-glow"></div>
         </div>
         <div className="loader-brand">

@@ -37,7 +37,7 @@ const Mission = () => {
             <div className="mission-image-container animate-on-scroll">
               <div className="mission-image-wrapper">
                 <img
-                  src="/assets/mission-image.jpg"
+                  src="assets/mission-image.jpg"
                   alt="رسالتنا"
                   className="img-fluid rounded-3 shadow mission-image-animated"
                   loading="lazy"

@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-lg-4 mb-4">
             <div className="footer-brand">
-              <img src="/assets/logo-white.png" alt="Thara Hospitality" height="50" className="mb-3" />
+              <img src="https://zozz909.github.io/thara1/assets/logo-white.png" alt="Thara Hospitality" height="50" className="mb-3" />
               <h4>مؤسسة ثرى للضيافة</h4>
               <p>نرتقي بتجربة الضيافة السعودية إلى مستوى جديد من الاحتراف والتميّز</p>
             </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 const SimpleYouTubeVideo = ({ videoId, fallbackImage }) => {
-  const [isMuted, setIsMuted] = useState(false)
+  const [isMuted, setIsMuted] = useState(false) // يبدأ بالصوت مفعل
   const [showMuteButton, setShowMuteButton] = useState(true)
+  const [showSoundNotice, setShowSoundNotice] = useState(true)
 
   // Extract video ID from YouTube URL
   const extractVideoId = (url) => {
@@ -21,7 +22,36 @@ const SimpleYouTubeVideo = ({ videoId, fallbackImage }) => {
       setShowMuteButton(true)
     }, 2000)
 
-    return () => clearTimeout(timer)
+    // محاولة تشغيل الصوت تلقائياً عند التحميل
+    const attemptAutoplay = () => {
+      const iframe = document.getElementById('youtube-player')
+      if (iframe) {
+        // إرسال رسالة للفيديو لإلغاء كتم الصوت
+        iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*')
+      }
+    }
+
+    // تأخير قصير للسماح للفيديو بالتحميل
+    const autoplayTimer = setTimeout(attemptAutoplay, 3000)
+
+    // إضافة مستمع للنقر لتشغيل الصوت
+    const handleUserInteraction = () => {
+      if (!isMuted) {
+        const iframe = document.getElementById('youtube-player')
+        if (iframe) {
+          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*')
+        }
+      }
+      setShowSoundNotice(false)
+    }
+
+    document.addEventListener('click', handleUserInteraction, { once: true })
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(autoplayTimer)
+      document.removeEventListener('click', handleUserInteraction)
+    }
   }, [])
 
   const toggleMute = () => {
@@ -66,7 +96,7 @@ const SimpleYouTubeVideo = ({ videoId, fallbackImage }) => {
         id="youtube-player"
         width="100%"
         height="100%"
-        src={`https://www.youtube.com/embed/${finalVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${finalVideoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&disablekb=1&fs=0&cc_load_policy=0&cc_lang_pref=ar&hl=ar`}
+        src={`https://www.youtube.com/embed/${finalVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${finalVideoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&disablekb=1&fs=0&cc_load_policy=0&cc_lang_pref=ar&hl=ar&enablejsapi=1`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -120,6 +150,28 @@ const SimpleYouTubeVideo = ({ videoId, fallbackImage }) => {
         >
           <i className={`bi ${isMuted ? 'bi-volume-mute-fill' : 'bi-volume-up-fill'}`}></i>
         </button>
+      )}
+
+      {/* إشعار الصوت */}
+      {showSoundNotice && !isMuted && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '20px',
+            background: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '8px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            zIndex: 10,
+            backdropFilter: 'blur(10px)',
+            animation: 'fadeInOut 4s ease-in-out forwards'
+          }}
+          onClick={() => setShowSoundNotice(false)}
+        >
+          🔊 انقر على أي مكان لتشغيل الصوت
+        </div>
       )}
     </div>
   )

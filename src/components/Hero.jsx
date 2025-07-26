@@ -43,16 +43,16 @@ const Hero = () => {
         fallbackImage="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
       />
 
-      {/* Alternative: Advanced YouTube Video */}
-      {/* <YouTubeVideo
-        videoId="IyHhWFIecc8"
+      {/* Alternative: Local Video (File too large for GitHub) */}
+      {/* <HeroVideo
+        videoSrc="assets/vidoe.mp4"
         fallbackImage="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
         enableSound={true}
       /> */}
 
-      {/* Alternative: Local Video */}
-      {/* <HeroVideo
-        videoSrc="/assets/hero-video.mp4"
+      {/* Alternative: Advanced YouTube Video */}
+      {/* <YouTubeVideo
+        videoId="IyHhWFIecc8"
         fallbackImage="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
         enableSound={true}
       /> */}

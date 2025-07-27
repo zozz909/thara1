@@ -37,7 +37,7 @@ const Story = () => {
             <div className="story-image-container animate-on-scroll">
               <div className="story-image-wrapper">
                 <img
-                  src="assets/story-image.jpg"
+                  src="https://zozz909.github.io/thara1/assets/story-image.jpg"
                   alt="قصتنا"
                   className="img-fluid rounded-3 shadow story-image-animated"
                   loading="lazy"

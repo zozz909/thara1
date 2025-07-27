@@ -38,9 +38,9 @@ const Services = () => {
       
       features: ['فعاليات داخلية', 'فعاليات خارجية', 'مناسبات خاصة'],
       images: [
-        'hhttps://zozz909.github.io/thara1/assets/coffee-service1.png',
-        'hhttps://zozz909.github.io/thara1/assets/coffee-service2.jpg',
-        'hhttps://zozz909.github.io/thara1/assets/thara12.jpg',
+        'https://zozz909.github.io/thara1/assets/coffee-service1.png',
+        'https://zozz909.github.io/thara1/assets/coffee-service2.jpg',
+        'https://zozz909.github.io/thara1/assets/thara12.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة القهوة السعودية'

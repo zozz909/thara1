@@ -38,9 +38,9 @@ const Services = () => {
       
       features: ['فعاليات داخلية', 'فعاليات خارجية', 'مناسبات خاصة'],
       images: [
-        'http://localhost:5173/thara1/assets/coffee-service1.png',
-        'http://localhost:5173/thara1/assets/coffee-service2.jpg',
-        'http://localhost:5173/thara1/assets/thara12.jpg',
+        'hhttps://zozz909.github.io/thara1/assets/coffee-service1.png',
+        'hhttps://zozz909.github.io/thara1/assets/coffee-service2.jpg',
+        'hhttps://zozz909.github.io/thara1/assets/thara12.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة القهوة السعودية'
@@ -52,10 +52,10 @@ const Services = () => {
       
       features: ['معارض داخلية', 'معارض خارجية', 'خدمات VIP'],
       images: [
-        'http://localhost:5173/thara1/assets/eatsa1.jpg',
-        'http://localhost:5173/thara1/assets/eatsa2.jpg',
-        'http://localhost:5173/thara1/assets/eatsa3.jpg',
-        'http://localhost:5173/thara1/assets/eatsa5.jpg'
+        'https://zozz909.github.io/thara1/assets/eatsa1.jpg',
+        'https://zozz909.github.io/thara1/assets/eatsa2.jpg',
+        'https://zozz909.github.io/thara1/assets/eatsa3.jpg',
+        'https://zozz909.github.io/thara1/assets/eatsa5.jpg'
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة الأكل السعودي والثقافة'
     },
@@ -66,8 +66,8 @@ const Services = () => {
       
       features: ['نكهات أصيلة', 'موكتيلات مبتكرة', 'تجربة فريدة'],
       images: [
-        'http://localhost:5173/thara1/assets/dringsa1.jpg',
-        'http://localhost:5173/thara1/assets/dringsa2.jpg',
+        'https://zozz909.github.io/thara1/assets/dringsa1.jpg',
+        'https://zozz909.github.io/thara1/assets/dringsa2.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة المشروبات والموكتيلات بالنكهات السعودية'
@@ -79,8 +79,8 @@ const Services = () => {
       
       features: ['شركات', 'هيئات حكومية', 'وزارات'],
       images: [
-        'http://localhost:5173/thara1/assets/eatsa4.jpg',
-        'http://localhost:5173/thara1/assets/copny.jpg',
+        'https://zozz909.github.io/thara1/assets/eatsa4.jpg',
+        'https://zozz909.github.io/thara1/assets/copny.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة الشركات والهيئات'
@@ -114,7 +114,7 @@ const Services = () => {
                     <div className="service-slideshow" data-service="workshop">
                       <div className="slide active">
                         <img
-                          src="http://localhost:5173/thara1/assets/coofesa1.jpg"
+                          src="https://zozz909.github.io/thara1/assets/coofesa1.jpg"
                           alt="ضيافة ورش العمل - كوفي بريك"
                           className="img-fluid"
                           loading="lazy"
@@ -126,7 +126,7 @@ const Services = () => {
                       </div>
                       <div className="slide">
                         <img
-                          src="http://localhost:5173/thara1/assets/coofebric2.jpg"
+                          src="https://zozz909.github.io/thara1/assets/coofebric2.jpg"
                           alt="ورشة عمل تفاعلية"
                           className="img-fluid"
                           loading="lazy"
@@ -138,7 +138,7 @@ const Services = () => {
                       </div>
                       <div className="slide">
                         <img
-                          src="http://localhost:5173/thara1/assets/coofesa3.jpg"
+                          src="hhttps://zozz909.github.io/thara1/assets/coofesa3.jpg"
                           alt="استراحة كوفي بريك"
                           className="img-fluid"
                           loading="lazy"

@@ -5,6 +5,8 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false) // يبدأ بالصوت مفعل دائماً
+  const [showSoundNotice, setShowSoundNotice] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -69,6 +71,47 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
       }
     }
   }, [enableSound, videoLoaded])
+
+  // تحديد نوع الجهاز
+  useEffect(() => {
+    const checkMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    setIsMobile(checkMobile)
+  }, [])
+
+  // تحسينات خاصة للجوال
+  useEffect(() => {
+
+    if (isMobile && videoRef.current) {
+      // إعدادات خاصة للجوال
+      videoRef.current.setAttribute('playsinline', 'true')
+      videoRef.current.setAttribute('webkit-playsinline', 'true')
+
+      // محاولة تشغيل الفيديو على الجوال عند اللمس
+      const playVideoOnTouch = () => {
+        if (videoRef.current) {
+          videoRef.current.play().catch(console.log)
+          // محاولة تفعيل الصوت إذا كان مطلوباً
+          if (enableSound) {
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.muted = false
+                setIsMuted(false)
+              }
+            }, 500)
+          }
+        }
+      }
+
+      // إضافة مستمعين للأحداث
+      document.addEventListener('touchstart', playVideoOnTouch, { once: true })
+      document.addEventListener('click', playVideoOnTouch, { once: true })
+
+      return () => {
+        document.removeEventListener('touchstart', playVideoOnTouch)
+        document.removeEventListener('click', playVideoOnTouch)
+      }
+    }
+  }, [enableSound])
 
   const handleVideoLoad = () => {
     setVideoLoaded(true)
@@ -140,9 +183,17 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
         muted={isMuted}
         loop
         playsInline
+        webkit-playsinline="true"
+        preload="auto"
         className="hero-video-bg"
         onLoadedData={handleVideoLoad}
         onError={handleVideoError}
+        onCanPlay={() => {
+          // محاولة تشغيل الفيديو عند جاهزيته للتشغيل
+          if (videoRef.current) {
+            videoRef.current.play().catch(console.log)
+          }
+        }}
         style={{
           opacity: videoLoaded ? 1 : 0,
           transition: 'opacity 1s ease-in-out'
@@ -232,6 +283,16 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
           <div className="loading-spinner">
             <i className="bi bi-play-circle" style={{ fontSize: '3rem', opacity: 0.7 }}></i>
           </div>
+        </div>
+      )}
+
+      {/* إشعار خاص بالجوال */}
+      {isMobile && showSoundNotice && (
+        <div
+          className="mobile-video-notice"
+          onClick={() => setShowSoundNotice(false)}
+        >
+          📱 اضغط في أي مكان لتشغيل الفيديو والصوت
         </div>
       )}
     </div>

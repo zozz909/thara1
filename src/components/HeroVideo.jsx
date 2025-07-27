@@ -78,24 +78,51 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
     setIsMobile(checkMobile)
   }, [])
 
-  // تحسينات خاصة للجوال
+  // تحسينات خاصة للجوال والتشغيل التلقائي
   useEffect(() => {
 
-    if (isMobile && videoRef.current) {
-      // إعدادات خاصة للجوال
+    if (videoRef.current) {
+      // إعدادات عامة للفيديو
       videoRef.current.setAttribute('playsinline', 'true')
       videoRef.current.setAttribute('webkit-playsinline', 'true')
+      videoRef.current.setAttribute('autoplay', 'true')
+      videoRef.current.muted = true
 
-      // محاولة تشغيل الفيديو على الجوال عند اللمس
-      const playVideoOnTouch = () => {
+      // محاولة تشغيل الفيديو فوراً
+      const attemptPlay = () => {
+        if (videoRef.current) {
+          videoRef.current.play().then(() => {
+            console.log('Video autoplay successful')
+            setIsPlaying(true)
+
+            // محاولة تفعيل الصوت تدريجياً
+            if (enableSound) {
+              setTimeout(() => {
+                if (videoRef.current) {
+                  videoRef.current.muted = false
+                  setIsMuted(false)
+                }
+              }, 1000)
+            }
+          }).catch(error => {
+            console.log('Video autoplay failed, will try on user interaction:', error)
+          })
+        }
+      }
+
+      // محاولة فورية
+      attemptPlay()
+
+      // محاولة عند التفاعل
+      const playVideoOnInteraction = () => {
         if (videoRef.current) {
           videoRef.current.play().catch(console.log)
-          // محاولة تفعيل الصوت إذا كان مطلوباً
           if (enableSound) {
             setTimeout(() => {
               if (videoRef.current) {
                 videoRef.current.muted = false
                 setIsMuted(false)
+                setShowSoundNotice(false)
               }
             }, 500)
           }
@@ -103,47 +130,64 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
       }
 
       // إضافة مستمعين للأحداث
-      document.addEventListener('touchstart', playVideoOnTouch, { once: true })
-      document.addEventListener('click', playVideoOnTouch, { once: true })
+      document.addEventListener('touchstart', playVideoOnInteraction, { once: true })
+      document.addEventListener('click', playVideoOnInteraction, { once: true })
+      document.addEventListener('keydown', playVideoOnInteraction, { once: true })
 
       return () => {
-        document.removeEventListener('touchstart', playVideoOnTouch)
-        document.removeEventListener('click', playVideoOnTouch)
+        document.removeEventListener('touchstart', playVideoOnInteraction)
+        document.removeEventListener('click', playVideoOnInteraction)
+        document.removeEventListener('keydown', playVideoOnInteraction)
       }
     }
-  }, [enableSound])
+  }, [enableSound, isMobile])
 
   const handleVideoLoad = () => {
     setVideoLoaded(true)
     if (videoRef.current) {
-      // Try to play with sound first, fallback to muted if needed
-      if (enableSound) {
-        videoRef.current.muted = false
-        videoRef.current.play().then(() => {
-          setIsPlaying(true)
-          setIsMuted(false)
-        }).catch(error => {
-          console.log('Video autoplay with sound failed, trying muted:', error)
+      // محاولة تشغيل الفيديو تلقائياً بدون صوت أولاً
+      videoRef.current.muted = true
+      setIsMuted(true)
+
+      videoRef.current.play().then(() => {
+        setIsPlaying(true)
+        console.log('Video started successfully')
+
+        // محاولة تفعيل الصوت تدريجياً
+        if (enableSound) {
+          // محاولة فورية
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.muted = false
+              setIsMuted(false)
+            }
+          }, 100)
+
+          // محاولة ثانية بعد ثانية
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.muted = false
+              setIsMuted(false)
+            }
+          }, 1000)
+
+          // محاولة ثالثة بعد 3 ثوانٍ
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.muted = false
+              setIsMuted(false)
+            }
+          }, 3000)
+        }
+      }).catch(error => {
+        console.log('Video autoplay failed:', error)
+        // محاولة أخيرة مع إعدادات مختلفة
+        if (videoRef.current) {
           videoRef.current.muted = true
-          setIsMuted(true)
-          videoRef.current.play().then(() => {
-            setIsPlaying(true)
-            // محاولة تفعيل الصوت بعد ثانية واحدة
-            setTimeout(() => {
-              if (videoRef.current && enableSound) {
-                videoRef.current.muted = false
-                setIsMuted(false)
-              }
-            }, 1000)
-          }).catch(err => {
-            console.log('Video autoplay failed completely:', err)
-          })
-        })
-      } else {
-        videoRef.current.play().catch(error => {
-          console.log('Video autoplay failed:', error)
-        })
-      }
+          videoRef.current.autoplay = true
+          videoRef.current.load()
+        }
+      })
     }
   }
 
@@ -180,16 +224,25 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
       <video
         ref={videoRef}
         autoPlay
-        muted={isMuted}
+        muted
         loop
         playsInline
         webkit-playsinline="true"
         preload="auto"
+        controls={false}
+        disablePictureInPicture
         className="hero-video-bg"
         onLoadedData={handleVideoLoad}
         onError={handleVideoError}
         onCanPlay={() => {
           // محاولة تشغيل الفيديو عند جاهزيته للتشغيل
+          if (videoRef.current) {
+            videoRef.current.muted = true
+            videoRef.current.play().catch(console.log)
+          }
+        }}
+        onLoadedMetadata={() => {
+          // محاولة إضافية عند تحميل البيانات الوصفية
           if (videoRef.current) {
             videoRef.current.play().catch(console.log)
           }

@@ -58,7 +58,7 @@ const Hero = () => {
       /> */}
       <div className="hero-overlay"></div>
       <div className="hero-content">
-        <div className="container">
+        <div >
           <div className="row justify-content-center text-center">
             <div className="col-lg-10">
               {/* العنوان محذوف حسب الطلب */}

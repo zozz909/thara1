@@ -89,7 +89,7 @@ const Services = () => {
 
   return (
     <section id="services" className="section-padding bg-light" ref={servicesRef}>
-      <div className="container">
+      <div>
         <div className="row">
           <div className="col-12 text-center mb-5">
             <h2 className="section-title animate-on-scroll">خدماتنا</h2>

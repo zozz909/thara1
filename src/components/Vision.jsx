@@ -31,7 +31,7 @@ const Vision = () => {
 
   return (
     <section id="vision" className="section-padding bg-light" ref={visionRef}>
-      <div className="container">
+      <div>
         <div className="row justify-content-center">
           <div className="col-lg-8 text-center">
             <div className="vision-content animate-on-scroll">

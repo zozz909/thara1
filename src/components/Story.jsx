@@ -31,7 +31,7 @@ const Story = () => {
 
   return (
     <section id="story" className="section-padding" ref={storyRef}>
-      <div className="container">
+      <div>
         <div className="row align-items-center">
           <div className="col-lg-6 order-lg-2">
             <div className="story-image-container animate-on-scroll">

@@ -70,7 +70,7 @@ const Statistics = () => {
 
   return (
     <section className="stats-section section-padding" ref={statsRef}>
-      <div>
+      <div className="container">
         <div className="row">
           <div className="col-12 text-center mb-5">
             <h2 className="section-title">إنجازاتنا بالأرقام</h2>

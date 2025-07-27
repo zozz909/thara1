@@ -31,7 +31,7 @@ const Mission = () => {
 
   return (
     <section id="mission" className="section-padding" ref={missionRef}>
-      <div >
+      <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="mission-image-container animate-on-scroll">

@@ -4,7 +4,7 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
   const [hasVideo, setHasVideo] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(!enableSound)
+  const [isMuted, setIsMuted] = useState(false) // يبدأ بالصوت مفعل دائماً
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -26,6 +26,50 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
     }
   }, [videoSrc])
 
+  // إضافة مستمع للنقر لتفعيل الصوت
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      if (videoRef.current && isMuted && enableSound) {
+        videoRef.current.muted = false
+        setIsMuted(false)
+      }
+    }
+
+    document.addEventListener('click', handleUserInteraction, { once: true })
+    document.addEventListener('touchstart', handleUserInteraction, { once: true })
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction)
+      document.removeEventListener('touchstart', handleUserInteraction)
+    }
+  }, [isMuted, enableSound])
+
+  // محاولة تفعيل الصوت عند تحميل الصفحة
+  useEffect(() => {
+    if (enableSound && videoRef.current && videoLoaded) {
+      const attemptUnmute = () => {
+        if (videoRef.current) {
+          videoRef.current.muted = false
+          setIsMuted(false)
+        }
+      }
+
+      // محاولة فورية
+      attemptUnmute()
+
+      // محاولة بعد ثانية واحدة
+      const timer = setTimeout(attemptUnmute, 1000)
+
+      // محاولة بعد 3 ثوانٍ
+      const timer2 = setTimeout(attemptUnmute, 3000)
+
+      return () => {
+        clearTimeout(timer)
+        clearTimeout(timer2)
+      }
+    }
+  }, [enableSound, videoLoaded])
+
   const handleVideoLoad = () => {
     setVideoLoaded(true)
     if (videoRef.current) {
@@ -41,6 +85,13 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
           setIsMuted(true)
           videoRef.current.play().then(() => {
             setIsPlaying(true)
+            // محاولة تفعيل الصوت بعد ثانية واحدة
+            setTimeout(() => {
+              if (videoRef.current && enableSound) {
+                videoRef.current.muted = false
+                setIsMuted(false)
+              }
+            }, 1000)
           }).catch(err => {
             console.log('Video autoplay failed completely:', err)
           })
@@ -86,7 +137,7 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
       <video
         ref={videoRef}
         autoPlay
-        muted={!enableSound}
+        muted={isMuted}
         loop
         playsInline
         className="hero-video-bg"

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import HeroVideo from './HeroVideo'
-import YouTubeVideo from './YouTubeVideo'
-import SimpleYouTubeVideo from './SimpleYouTubeVideo'
 
 const Hero = () => {
   useEffect(() => {

@@ -42,9 +42,8 @@ const Story = () => {
                   className="img-fluid rounded-3 shadow story-image-animated"
                   loading="lazy"
                 />
-                <div className="image-overlay">
+                <div>
                   <div className="overlay-content">
-                    <i className="bi bi-book overlay-icon"></i>
                   </div>
                 </div>
               </div>

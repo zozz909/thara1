@@ -42,7 +42,7 @@ const Mission = () => {
                   className="img-fluid rounded-3 shadow mission-image-animated"
                   loading="lazy"
                 />
-                <div className="image-overlay">
+                <div >
                   <div className="overlay-content">
                     <i className="bi bi-target overlay-icon"></i>
                   </div>

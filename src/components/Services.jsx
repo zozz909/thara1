@@ -35,12 +35,12 @@ const Services = () => {
       id: 'coffee',
       title: 'ضيافة القهوة السعودية',
       description: 'نقدم خدمة ضيافة القهوة السعودية الأصيلة في الفعاليات الداخلية والخارجية والمناسبات الخاصة، مع الحفاظ على التراث السعودي العريق في تحضير وتقديم القهوة.',
-      icon: '',
+      
       features: ['فعاليات داخلية', 'فعاليات خارجية', 'مناسبات خاصة'],
       images: [
-        'assets/coffee-service1.png',
-        'assets/coffee-service2.jpg',
-        'assets/thara12.jpg',
+        'http://localhost:5173/thara1/assets/coffee-service1.png',
+        'http://localhost:5173/thara1/assets/coffee-service2.jpg',
+        'http://localhost:5173/thara1/assets/thara12.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة القهوة السعودية'
@@ -49,13 +49,13 @@ const Services = () => {
       id: 'food',
       title: 'ضيافة الأكل السعودي والثقافة',
       description: 'نقدم الأكل السعودي الأصيل ونعرض الثقافة السعودية في المعارض الداخلية والخارجية، مع خدمات VIP للمشاركين المميزين.',
-      icon: 'bi-dish',
+      
       features: ['معارض داخلية', 'معارض خارجية', 'خدمات VIP'],
       images: [
-        'assets/eatsa1.jpg',
-        'assets/eatsa2.jpg',
-        'assets/eatsa3.jpg',
-        'assets/eatsa5.jpg'
+        'http://localhost:5173/thara1/assets/eatsa1.jpg',
+        'http://localhost:5173/thara1/assets/eatsa2.jpg',
+        'http://localhost:5173/thara1/assets/eatsa3.jpg',
+        'http://localhost:5173/thara1/assets/eatsa5.jpg'
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة الأكل السعودي والثقافة'
     },
@@ -63,11 +63,11 @@ const Services = () => {
       id: 'drinks',
       title: 'مشروبات وموكتيلات بنكهات سعودية',
       description: 'نبتكر مشروبات وموكتيلات فريدة بنكهات سعودية أصيلة، تجمع بين التراث والحداثة لتقديم تجربة مذاق لا تُنسى لضيوفكم.',
-      icon: 'bi-cup-straw',
+      
       features: ['نكهات أصيلة', 'موكتيلات مبتكرة', 'تجربة فريدة'],
       images: [
-        'assets/dringsa1.jpg',
-        'assets/dringsa2.jpg',
+        'http://localhost:5173/thara1/assets/dringsa1.jpg',
+        'http://localhost:5173/thara1/assets/dringsa2.jpg',
         
       ],
       whatsappText: 'أريد الاستفسار عن خدمة المشروبات والموكتيلات بالنكهات السعودية'
@@ -76,13 +76,12 @@ const Services = () => {
       id: 'corporate',
       title: 'ضيافة الشركات والهيئات',
       description: 'نوفر خدمات ضيافة متخصصة للشركات والهيئات والوزارات، مع التركيز على الاحترافية والتميز في تقديم الخدمة لتعكس صورة مؤسستكم المتميزة.',
-      icon: 'bi-building',
+      
       features: ['شركات', 'هيئات حكومية', 'وزارات'],
       images: [
-        '/assets/eatsa4.jpg',
-        '/assets/coofesa1.jpg',
-        '/assets/coffee-service1.png',
-        '/assets/mission-image.jpg'
+        'http://localhost:5173/thara1/assets/eatsa4.jpg',
+        'http://localhost:5173/thara1/assets/copny.jpg',
+        
       ],
       whatsappText: 'أريد الاستفسار عن خدمة ضيافة الشركات والهيئات'
     }
@@ -115,7 +114,7 @@ const Services = () => {
                     <div className="service-slideshow" data-service="workshop">
                       <div className="slide active">
                         <img
-                          src="/assets/coffee-service2.jpg"
+                          src="http://localhost:5173/thara1/assets/coofesa1.jpg"
                           alt="ضيافة ورش العمل - كوفي بريك"
                           className="img-fluid"
                           loading="lazy"
@@ -127,7 +126,7 @@ const Services = () => {
                       </div>
                       <div className="slide">
                         <img
-                          src="/assets/coofebric2.jpg"
+                          src="http://localhost:5173/thara1/assets/coofebric2.jpg"
                           alt="ورشة عمل تفاعلية"
                           className="img-fluid"
                           loading="lazy"
@@ -139,7 +138,7 @@ const Services = () => {
                       </div>
                       <div className="slide">
                         <img
-                          src="/assets/story-image.jpg"
+                          src="http://localhost:5173/thara1/assets/coofesa3.jpg"
                           alt="استراحة كوفي بريك"
                           className="img-fluid"
                           loading="lazy"
@@ -149,18 +148,7 @@ const Services = () => {
                           }}
                         />
                       </div>
-                      <div className="slide">
-                        <img
-                          src="/assets/mission-image.jpg"
-                          alt="دورة تدريبية"
-                          className="img-fluid"
-                          loading="lazy"
-                          style={{
-                            objectFit: 'contain',
-                            backgroundColor: '#f8f9fa'
-                          }}
-                        />
-                      </div>
+                   
                       <div className="slideshow-indicators">
                         <span className="slideshow-dot active"></span>
                         <span className="slideshow-dot"></span>
@@ -168,9 +156,8 @@ const Services = () => {
                         <span className="slideshow-dot"></span>
                       </div>
                     </div>
-                    <div className="service-overlay">
-                      <div className="service-icon">
-                        <i className="bi bi-briefcase"></i>
+                    <div >
+                      <div>
                       </div>
                     </div>
                   </div>

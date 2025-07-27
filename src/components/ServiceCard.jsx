@@ -54,7 +54,7 @@ const ServiceCard = ({ service }) => {
             ))}
           </div>
         </div>
-        <div className="service-overlay">
+        <div>
           <div className="service-icon">
             <i className={`bi ${service.icon}`}></i>
           </div>

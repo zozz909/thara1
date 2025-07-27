@@ -59,32 +59,10 @@ const Hero = () => {
         <div className="container">
           <div className="row justify-content-center text-center">
             <div className="col-lg-10">
-              <h1 className="hero-title">
-                مؤسسة ثرى للضيافة
-              </h1>
-              <p className="hero-subtitle">
-                نقدم أفضل خدمات الضيافة السعودية الأصيلة مع لمسة عصرية تجمع بين التراث والحداثة
-              </p>
-              <div className="hero-buttons">
-                <a href="#services" className="btn btn-primary btn-lg">
-                  <i className="bi bi-cup-hot me-2"></i>
-                  خدماتنا
-                </a>
-                <a href="#contact" className="btn btn-outline-light btn-lg">
-                  <i className="bi bi-telephone me-2"></i>
-                  تواصل معنا
-                </a>
-              </div>
+              {/* العنوان محذوف حسب الطلب */}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="scroll-indicator">
-        <a href="#services" className="scroll-link">
-          <i className="bi bi-chevron-down"></i>
-        </a>
       </div>
     </section>
   )

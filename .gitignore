@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Large video files
-public/assets/*.mp4
-public/assets/*.zip
-public/assets/*.mov
-public/assets/*.avi

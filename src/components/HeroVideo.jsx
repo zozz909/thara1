@@ -4,8 +4,7 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
   const [hasVideo, setHasVideo] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(true) // يبدأ مكتوماً دائماً للسماح بالتشغيل التلقائي
-  const [showSoundNotice, setShowSoundNotice] = useState(true)
+  const [isMuted, setIsMuted] = useState(!enableSound)
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -25,22 +24,7 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
     if (videoSrc) {
       checkVideoExists()
     }
-
-    // إضافة مستمع للنقر لتفعيل الصوت
-    const handleUserInteraction = () => {
-      if (videoRef.current && isMuted && enableSound) {
-        videoRef.current.muted = false
-        setIsMuted(false)
-        setShowSoundNotice(false)
-      }
-    }
-
-    document.addEventListener('click', handleUserInteraction, { once: true })
-
-    return () => {
-      document.removeEventListener('click', handleUserInteraction)
-    }
-  }, [videoSrc, isMuted, enableSound])
+  }, [videoSrc])
 
   const handleVideoLoad = () => {
     setVideoLoaded(true)
@@ -102,7 +86,7 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
       <video
         ref={videoRef}
         autoPlay
-        muted={isMuted}
+        muted={!enableSound}
         loop
         playsInline
         className="hero-video-bg"
@@ -177,61 +161,6 @@ const HeroVideo = ({ videoSrc, fallbackImage, enableSound = false }) => {
         </div>
       )}
       
-      {/* Video Controls */}
-      {videoLoaded && hasVideo && (
-        <>
-          {/* Mute/Unmute Button */}
-          <button
-            onClick={toggleMute}
-            className="video-mute-toggle"
-            style={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px',
-              background: 'rgba(0, 0, 0, 0.6)',
-              border: 'none',
-              borderRadius: '50%',
-              width: '40px',
-              height: '40px',
-              color: 'white',
-              fontSize: '16px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 10,
-              transition: 'all 0.3s ease',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)'
-            }}
-          >
-            <i className={`bi ${isMuted ? 'bi-volume-mute-fill' : 'bi-volume-up-fill'}`}></i>
-          </button>
-
-          {/* Sound Notice */}
-          {showSoundNotice && isMuted && enableSound && (
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                background: 'rgba(0, 0, 0, 0.7)',
-                color: 'white',
-                padding: '8px 12px',
-                borderRadius: '20px',
-                fontSize: '12px',
-                zIndex: 10,
-                backdropFilter: 'blur(10px)',
-                animation: 'fadeInOut 4s ease-in-out forwards'
-              }}
-              onClick={() => setShowSoundNotice(false)}
-            >
-              🔊 انقر على أي مكان لتشغيل الصوت
-            </div>
-          )}
-        </>
-      )}
-
       {/* Loading placeholder */}
       {!videoLoaded && hasVideo && (
         <div className="video-loading" style={{
